@@ -6,10 +6,10 @@
 ## 工作空间 ##
 
 ### 空间结构 ###
-1.velo_calib_ws 相机-雷达联合标定工作空间 
-2.sys_time_ws 软件时间同步工作空间 
-3.hik-camera_ws 海康相机驱动工作空间 
-4.fl2_ws 三维重建工作空间 
+1.velo_calib_ws 相机-雷达联合标定工作空间   
+2.sys_time_ws 软件时间同步工作空间  
+3.hik-camera_ws 海康相机驱动工作空间   
+4.fl2_ws 三维重建工作空间    
 
 ### 准备工作 ###
 本工作空间依赖 **Ubuntu 20.04** & **ROS noetic** 
