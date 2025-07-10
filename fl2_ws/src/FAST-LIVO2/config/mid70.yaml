@@ -1,0 +1,87 @@
+common:
+  img_topic: "/image"
+  lid_topic: "/livox/lidar"
+  imu_topic: "/livox/imu"
+  img_en: 1
+  lidar_en: 1
+  ros_driver_bug_fix: false
+
+extrin_calib:
+  extrinsic_T: [-0.001644, 0.033128, -0.030835]
+  extrinsic_R: [0.999949, 0.002628, -0.001644,
+-0.002553, 0.999967, -0.007769,
+-0.009757, 0.007743, 0.999922]
+  Rcl: [-0.002991, 0.000073, 0.999996,
+0.999981, -0.005425, 0.002992,
+0.005425, 0.999985, -0.000057]
+  Pcl: [-0.051888, -0.016299, -0.049052]
+
+time_offset: 
+  imu_time_offset: 0.0
+  img_time_offset: 0.0
+  exposure_time_init: 0.0 # estimate exposure time
+
+preprocess:
+  point_filter_num: 1 # 1,2,3 bigger and smaller
+  filter_size_surf: 0.1
+  lidar_type: 1 # Livox Avia LiDAR
+  scan_line: 6
+  blind: 0.8
+
+vio:
+  max_iterations: 5
+  outlier_threshold: 1000 # 78 100 156 #100 200 500 700 infinite
+  img_point_cov: 100 # 100 1000 
+  patch_size: 8
+  patch_pyrimid_level: 4
+  normal_en: true
+  raycast_en: false
+  inverse_composition_en: false
+  exposure_estimate_en: true
+  inv_expo_cov: 0.1
+
+imu:
+  imu_en: true
+  imu_int_frame: 30
+  acc_cov: 0.5 # 0.2
+  gyr_cov: 0.3 # 0.5
+  b_acc_cov: 0.0001 # 0.1
+  b_gyr_cov: 0.0001 # 0.1
+
+lio:
+  max_iterations: 5
+  dept_err: 0.02  # 深度误差
+  beam_err: 0.10  #激光束误差
+  min_eigen_value: 0.0025 # 0.005 最小特征值，用于滤除不可靠的点
+  voxel_size: 0.5
+  max_layer: 2
+  max_points_num: 50
+  layer_init_num: [5, 5, 5, 5, 5]
+
+local_map:  
+  map_sliding_en: false
+  half_map_size: 100
+  sliding_thresh: 8
+
+uav:
+  imu_rate_odom: false
+  gravity_align_en: false
+
+publish:
+  dense_map_en: true
+  pub_effect_point_en: false 
+  pub_plane_en: false
+  pub_scan_num: 1
+  blind_rgb_points: 0.0
+
+evo:
+  seq_name: "CBD_Building_01"
+  pose_output_en: false
+
+pcd_save:
+  pcd_save_en: false
+  colmap_output_en: false # need to set interval = -1
+  filter_size_pcd: 0.15
+  interval: -1
+  # how many LiDAR frames saved in each pcd file;
+  # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames.
